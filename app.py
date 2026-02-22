@@ -1,12 +1,11 @@
-import os
+
 import streamlit as st
 import pandas as pd
 import joblib
 
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
-model = joblib.load(os.path.join(BASE_DIR, "random_force_credit_model.pkl"))
-encoders = {col: joblib.load(os.path.join(BASE_DIR, f"{col}_encoder.pkl"))
+model = joblib.load("random_force_credit_model.pkl")
+encoders = {col: joblib.load(f"{col}_encoder.pkl") for col in ['Sex', 'Housing', 'Saving accounts', 'Checking account']
             for col in ["Sex", "Housing", "Saving accounts", "Checking account"]}
 
 st.title("Credit Risk Prediction App")
